@@ -14,17 +14,28 @@ use Lib\JsonResponse as JsonResponse;
 	$route = null;	
 	$requestURI = Route::getRequestURI();
 	$apiStatus = false;
+	$requestMethod = $_SERVER['REQUEST_METHOD'];
 
 	// print_r($requestURI); exit();
+	/*echo "<pre>";
+	print_r($_SERVER);
+	echo "</pre>";
+        exit();*/
+        // echo Route::getProjectDirName();
+        // var_dump(Route::getProjectDirName());
+        // exit();
 
-	if(isset($requestURI[3])){
-		$apiStatus = Route::checkApiStatus($requestURI[3]);
+        $requestURI = Route::getRequestURI();
+    
+
+	if(isset($requestURI[1])){
+		$apiStatus = Route::checkApiStatus($requestURI[1]);
 
 		if($apiStatus == true){
-			$route = $requestURI[4];	
+			$route = $requestURI[2];	
 		}
 		else{
-			$route = $requestURI[3];		
+			$route = $requestURI[1];		
 		}
 		
 		// $route = strtolower($route);
@@ -38,7 +49,7 @@ use Lib\JsonResponse as JsonResponse;
 	}
 
 	//checking route parameter value
-	if($route=="home"){		
+	if($route=="home" || $route==""){			
 		$homeController->homePage();
 		exit();
 
@@ -48,9 +59,10 @@ use Lib\JsonResponse as JsonResponse;
 		exit();
 	}
 	if($route=="contact"){
-		$homeController->contactPage();
+		$homeController->contactPage();				
 		exit();
 	}
+        
 
 	include_once(__DIR__."/api_route.php");
 

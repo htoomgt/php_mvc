@@ -14,10 +14,10 @@ class DBManager
 	
 		public function getDefaultDbConnection(){
 			
-			$host = AppVar::$mysqlHostName;
-            $username = AppVar::$mysqlUserName;
-            $passwords = AppVar::$mysqlPasswords;
-            $dbname = AppVar::$mysqlDB;
+                    $host = AppVar::$mysqlHostName;
+                    $username = AppVar::$mysqlUserName;
+                    $passwords = AppVar::$mysqlPasswords;
+                    $dbname = AppVar::$mysqlDB;
 
 
 			try {

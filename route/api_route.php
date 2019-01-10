@@ -26,4 +26,4 @@ if($route== "getIdiot"){
 	JsonResponse::respondContent($content);
 	exit();
 
-}https://ninesilos.files.wordpress.com/2013/07/raju-rastogi.jpg
+}

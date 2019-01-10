@@ -13,16 +13,19 @@ use Core\Loader as Loader;
 use Core\Route as Route;
 
 class HomeController extends BaseController
-{
-	
+{	
+	private $name = "htoo";
 	
 	public function homePage()
 	{
-		$appName = AppVar::$appName;		
+		$appName = AppVar::$appName;	
+	     		
 		
 		Loader::loadTemplate("header");
 		Loader::loadView("home");
 		Loader::loadTemplate("footer");
+
+		
 	}
 	
 	public function aboutPage()
