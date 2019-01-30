@@ -56,6 +56,12 @@ class Route
 		
 		return $apiStatus;
 	}
+        
+        public static function getRequestMethod()
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		return $method;
+	}
 
 	
 }

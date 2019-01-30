@@ -5,16 +5,20 @@
  */
 namespace Model;
 
-use  Config\DBManger as DBManger;
+use Config\DBManager as DBManager;
 
 class BaseModel 
 {
-	protected $dbConnection = null;
+	protected $dbm = null;
 
-	function __construct()
+	public function __construct()
 	{
-		$dbm = new DBManger();
-		$this->dbConnection = $dbm->getDefaultConnection();
+		$dbm = new DBManager();		
 	}
+        
+        public function getDefaultConnection(){
+            
+            $this->dbConnection = $dbm->getDefaultConnection();
+        }
 	
 }

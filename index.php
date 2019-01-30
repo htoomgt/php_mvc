@@ -13,5 +13,8 @@
 		
 	//For Web route
 	include(__DIR__."/route/route.php");
+        
+        //Setting Timezone
+        date_default_timezone_set(Config\AppVar::$timeZone);
 
 
