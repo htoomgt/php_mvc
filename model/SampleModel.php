@@ -1,8 +1,8 @@
 <?php
 namespace Model;
+require_once __DIR__."/../vendor/autoload.php";
 
-
-use Model\BaseModel as BaseModel;
+use Model\BaseModel;
 use Model\VO\SampleVO as SampleVO;
 use PDO;
 use Swoole\MySQL\Exception;
@@ -84,10 +84,12 @@ class SampleModel extends BaseModel{
                 `password` = :password,
                 `status` = :status,
                 `note` = :note,
-                `updated_at` = :created_at,
+                `updated_at` = :updated_at
                 WHERE id = :id ;
             ";
         $sth = $dbh->prepare($sql);
+        
+
         
         //parameter binding
         $sth->bindValue(':firstName', $data->getFirstName(), PDO::PARAM_STR);
@@ -97,7 +99,7 @@ class SampleModel extends BaseModel{
         $sth->bindValue(':status', $data->getStatus(), PDO::PARAM_STR);
         $sth->bindValue(':note', $data->getNote(), PDO::PARAM_STR);
         $sth->bindValue(':updated_at', $data->getUpdatedAt(), PDO::PARAM_STR);
-        $sth->bindValue(':id', $data->getId(), PDO::PARAM_STR);
+        $sth->bindValue(':id', $data->getId(), PDO::PARAM_INT);
         
         try {
             $dbh->beginTransaction();
@@ -107,7 +109,11 @@ class SampleModel extends BaseModel{
         } catch (PDOException $ex) {
             $dbh->rollback();
             $status = "fail";
-        } finally {
+            echo "Database Error exception : ".$ex->getMessage();
+        }catch(Exception $e){
+            echo "General error exception : ".$e->getMessage();
+        }
+        finally {
             $sth = null;
             $dbh = null;
         }
@@ -180,6 +186,15 @@ class SampleModel extends BaseModel{
         
     }
     
+    public function testVO()
+    {
+        $obj = new SampleVO();
+        var_dump($obj);
+    }
+    
     
     
 }
+
+//$obj = new SampleModel();
+//$obj->testVO();

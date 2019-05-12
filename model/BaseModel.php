@@ -1,9 +1,10 @@
 <?php
-
+namespace Model;
+require_once __DIR__."/../vendor/autoload.php";
 /**
  * 
  */
-namespace Model;
+
 
 use Config\DBManager as DBManager;
 
@@ -13,12 +14,15 @@ class BaseModel
 
 	public function __construct()
 	{
-		$dbm = new DBManager();		
+		$this->dbm = new DBManager();		
 	}
         
         public function getDefaultConnection(){
             
-            $this->dbConnection = $dbm->getDefaultConnection();
+            return $this->dbm->getDefaultDbConnection();
         }
 	
 }
+//$obj = new \Model\BaseModel();
+//$dbh = $obj->getDefaultConnection();
+//var_dump($dbh);

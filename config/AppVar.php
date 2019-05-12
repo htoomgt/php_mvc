@@ -1,9 +1,9 @@
 <?php
+namespace Config;
 
 /**
  * 
  */
-namespace Config;
 
 class AppVar 
 {

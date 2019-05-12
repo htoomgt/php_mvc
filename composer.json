@@ -11,6 +11,7 @@
         "psr-4" :  {
             "Config\\" : "config/",
             "Model\\" : "model/",
+            "Model\\VO\\" : "model/vo/",
             "Controller\\" : "controller/",
             "Lib\\" : "lib/",
             "Core\\" : "core/"

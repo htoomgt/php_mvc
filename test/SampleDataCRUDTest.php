@@ -13,9 +13,9 @@ require __DIR__.'/../vendor/autoload.php';
  * @author htoo maung thait <htoomaungthait@gmail.com>
  */
 
-use Model\SampleModel as SampleModel;
-//use Model\VO\SampleVO as SampleVO;
+use Model\SampleModel;
 use Model\VO\SampleVO;
+use Config\AppVar;
 
 class SampleDataCRUDTest {
     private $sampleModel = null;
@@ -27,19 +27,20 @@ class SampleDataCRUDTest {
     public function __construct() {
         $this->sampleVO = new SampleVO();
         $this->sampleModel = new SampleModel();
-        var_dump($this->sampleVO); exit();
-        $this->dateTimeFormat = Config\AppVar::$defaultDateTimeFormat;
+        
+        
+        $this->dateTimeFormat = AppVar::$defaultDateTimeFormat;
         $this->createdAt = date($this->dateTimeFormat);
         $this->updatedAt = date($this->dateTimeFormat);
         
-        $sampleVO->setFirstName("John");
-        $sampleVO->setLastName("Doe");
-        $sampleVO->setEmail("johndoe@gmail.com");
-        $sampleVO->setPassword("JooWwx32*");
-        $sampleVO->setStatus("active");
-        $sampleVO->setNote("this is a sample note.");
-        $sampleVO->setCreatedAt($this->createdAt);
-        $sampleVO->setUpdatedAt($this->updatedAt);
+        $this->sampleVO->setFirstName("John");
+        $this->sampleVO->setLastName("Doe");
+        $this->sampleVO->setEmail("johndoe@gmail.com");
+        $this->sampleVO->setPassword("JooWwx32*");
+        $this->sampleVO->setStatus("active");
+        $this->sampleVO->setNote("this is a sample note.");
+        $this->sampleVO->setCreatedAt($this->createdAt);
+        $this->sampleVO->setUpdatedAt($this->updatedAt);
         
         
     }
@@ -53,6 +54,7 @@ class SampleDataCRUDTest {
     public function testUpdateById($id)
     {
         $this->sampleVO->setId($id);
+        $this->sampleVO->setLastName("Bravo");
         $status = $this->sampleModel->updateAllById($this->sampleVO);
         echo $status;
     }
@@ -80,3 +82,7 @@ class SampleDataCRUDTest {
 
 $obj = new SampleDataCRUDTest();
 //$obj->testInsert();
+//$obj->testRetrievedById(2);
+//$obj->testDeleteById(3);
+$obj->testUpdateById(4);
+
